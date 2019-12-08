@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/users/roles")
 public class RoleController {
 	
-	@GetMapping("/wel-come")
+	@GetMapping("/welcome")
 	public ResponseEntity<String> welcome() {
 		return new ResponseEntity<>("welcome user-api", HttpStatus.OK);
 	}
