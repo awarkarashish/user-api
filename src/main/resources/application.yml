@@ -1,0 +1,41 @@
+server:
+   port: 8098 #default port where the service will be started
+   
+eureka: #tells about the Eureka server details and its refresh time
+   instance:
+      leaseRenewalIntervalInSeconds: 1
+      leaseExpirationDurationInSeconds: 2
+   client:
+      serviceUrl:
+         defaultZone: http://127.0.0.1:8761/eureka/
+      healthcheck:
+         enabled: true
+      lease:
+         duration: 5
+      registerWithEureka: false #telling the server not to register himself in the service registry
+      fetchRegistry: false
+      
+spring:
+   application:
+      name: user-api #current service name to be used by the eureka server
+   datasource:
+      url: jdbc:h2:mem:testdb
+      driverClassName: org.h2.Driver
+      username: sa
+      password:    
+   h2:
+      console:
+         enabled: true //Enable the console.
+         #path: /h2
+      
+management:
+   security:
+      enabled: false #disable the spring security on the management endpoints like /env, /refresh etc.
+   endpoints:
+      web:
+         exposure:
+            include: hystrix.stream
+            
+logging:
+   level:
+      com.ecom.userapi: INFO
